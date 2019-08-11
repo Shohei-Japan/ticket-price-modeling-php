@@ -1,0 +1,33 @@
+{
+    "name": "nunulk/cinema-ticket-pricing",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^8.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "nunulk",
+            "email": "nunulk@usingstd.com"
+        }
+    ],
+    "scripts": {
+        "test": "./vendor/bin/phpunit"
+    },
+    "require": {
+        "symfony/console": "^4.3",
+        "nesbot/carbon": "^2.21",
+        "myclabs/php-enum": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "CinemaTicketPricing\\": "src/domain/",
+            "App\\": "src/app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CinemaTicket\\Test\\": "test/domain/"
+        }
+    }
+}
