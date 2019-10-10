@@ -16,4 +16,6 @@ class MovieSchedule
         $this->date = $date;
         $this->time = $time;
     }
+
+
 }
