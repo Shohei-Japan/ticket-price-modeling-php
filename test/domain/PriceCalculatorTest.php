@@ -9,12 +9,13 @@ use CinemaTicketPricing\PriceCalculator;
 class PriceCalculatorTest extends TestCase
 {
     /**
+     * @param int $expected
      * @dataProvider dataInvoke
      */
     public function testInvoke(int $expected)
     {
-        $calcurator = new PriceCalculator();
-        $actual = $calcurator->invoke();
+        $calculator = new PriceCalculator();
+        $actual = $calculator->invoke();
 
         $this->assertSame($expected, $actual);
     }
