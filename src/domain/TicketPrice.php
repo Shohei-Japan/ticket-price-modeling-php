@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace TicketPrice;
-
-use CinemaTicketPricing\MovieSchedule;
-use CinemaTicketPricing\UserType;
+namespace CinemaTicketPricing;
 
 class TicketPrice
 {
-    private $movieSchedule;
+    /** @var int */
+    private $price;
 
-    private $userType;
-
-    public function __construct(MovieSchedule $movieSchedule, UserType $userType)
+    public function __construct(int $price)
     {
-        $this->movieSchedule = $movieSchedule;
-        $this->userType      = $userType;
+        $this->price = $price;
+    }
+
+    public function add(TicketPrice $another)
+    {
+        return new static($this->price + $another->price);
     }
 }

@@ -16,6 +16,8 @@ use MyCLabs\Enum\Enum;
  * @method static static STUDENT1()
  * @method static static STUDENT2()
  * @method static static CHILD()
+ * @method static static HANDICAPPED1()
+ * @method static static HANDICAPPED2()
  */
 class UserType extends Enum
 {
@@ -25,4 +27,6 @@ class UserType extends Enum
     private const STUDENT1      = '学生（大・専）';
     private const STUDENT2      = '中・高校生';
     private const CHILD         = '幼児（3才以上）・小学生';
+    private const HANDICAPPED1  = '障がい者（学生以上）';
+    private const HANDICAPPED2  = '障がい者（高校以下）';
 }

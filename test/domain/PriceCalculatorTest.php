@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 namespace CinemaTicketPricing\Test;
 
+use CinemaTicketPricing\MovieSchedule;
+use CinemaTicketPricing\TicketPrice;
+use CinemaTicketPricing\UserType;
 use PHPUnit\Framework\TestCase;
 use CinemaTicketPricing\PriceCalculator;
+use CinemaTicketPricing\TicketPriceDeterminants;
 
 class PriceCalculatorTest extends TestCase
 {
@@ -14,16 +18,17 @@ class PriceCalculatorTest extends TestCase
      */
     public function testInvoke(int $expected)
     {
-        $calculator = new PriceCalculator();
-        $actual = $calculator->invoke();
+        $determinants = new TicketPriceDeterminants(new MovieSchedule('2019-10-10', '17:00'), UserType::MEMBER());
+        $calculator   = new PriceCalculator();
+        $actual       = $calculator->invoke($determinants);
 
-        $this->assertSame($expected, $actual);
+        $this->assertEquals(new TicketPrice($expected), $actual);
     }
 
     public function dataInvoke()
     {
         return [
-            '会員,平日' => [
+            '会員,平日'      => [
                 'expected' => 1000,
             ],
             '会員,平日（レイト）' => [
