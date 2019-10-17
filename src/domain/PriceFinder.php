@@ -38,7 +38,7 @@ class PriceFinder
         $hour = $schedule->format('H');
 
         $isWeekend = $day === '0' || $day === '6';
-        $isLate = $hour > 20;
+        $isLate = $hour >= 20;
 
         if (!$isWeekend) {
             if (!$isLate) {
