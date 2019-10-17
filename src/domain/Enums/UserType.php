@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CinemaTicketPricing;
+namespace CinemaTicketPricing\Enums;
 
 use MyCLabs\Enum\Enum;
 
