@@ -8,6 +8,7 @@ use CinemaTicketPricing\MovieSchedule;
 use CinemaTicketPricing\PriceFinder;
 use CinemaTicketPricing\TicketPriceDeterminants;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 
 /**
  * Class PriceFinderTest
@@ -70,6 +71,24 @@ class PriceFinderTest extends TestCase
     }
 
     /**
+     * @throws \Exception
+     */
+    public function testCannotFindWithInvalidKey()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $determinants = new TicketPriceDeterminants(
+            new MovieSchedule('2019-10-10', '10:00:00'),
+            UserType::MEMBER()
+        );
+
+        $finder = new PriceFinder($determinants);
+        $finder->find([
+            '祝日' => '1000',
+        ]);
+    }
+
+
+    /**
      * @param String $date
      * @param String $time
      * @param ScheduleType $expected
@@ -129,11 +148,11 @@ class PriceFinderTest extends TestCase
     private function prices()
     {
         return [
-            ScheduleType::MOVIE_DAY()->getValue()    => '1000',
-            ScheduleType::WEEKDAY()->getValue()      => '1100',
-            ScheduleType::WEEKDAY_LATE()->getValue() => '1300',
-            ScheduleType::WEEKEND()->getValue()      => '1500',
-            ScheduleType::WEEKEND_LATE()->getValue() => '1800',
+            ScheduleType::MOVIE_DAY()->getKey()    => '1000',
+            ScheduleType::WEEKDAY()->getKey()      => '1100',
+            ScheduleType::WEEKDAY_LATE()->getKey() => '1300',
+            ScheduleType::WEEKEND()->getKey()      => '1500',
+            ScheduleType::WEEKEND_LATE()->getKey() => '1800',
         ];
     }
 }
