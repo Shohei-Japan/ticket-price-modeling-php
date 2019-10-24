@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace CinemaTicketPricing;
 
+use CinemaTicketPricing\Enums\MovieType;
+
 class Movie
 {
     /** @var string */
     private $title;
 
-    /** @var \CinemaTicketPricing\MovieType */
+    /** @var \CinemaTicketPricing\Enums\MovieType */
     private $type;
 
     /**

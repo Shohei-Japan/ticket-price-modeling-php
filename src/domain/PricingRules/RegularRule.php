@@ -1,12 +1,12 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace CinemaTicketPricing\PricingRules;
 
 use CinemaTicketPricing\TicketPrice;
 use CinemaTicketPricing\TicketPriceDeterminants;
+use CinemaTicketPricing\PriceFinder;
 
-class GeneralMemberRule implements PricingRuleInterface
+class RegularRule implements PricingRuleInterface
 {
     private $determinants;
 
@@ -25,6 +25,9 @@ class GeneralMemberRule implements PricingRuleInterface
 
     public function value(): TicketPrice
     {
-        return new TicketPrice(1000);
+        $finder = new PriceFinder($this->determinants);
+        $price = $finder->find($this->prices);
+        // finder->find で数値を返す必要あり
+        return new TicketPrice($price);
     }
 }

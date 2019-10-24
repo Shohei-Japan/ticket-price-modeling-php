@@ -2,10 +2,12 @@
 
 namespace CinemaTicketPricing;
 
+use CinemaTicketPricing\Enums\UserType;
+
 class TicketPriceDeterminants
 {
     /** @var MovieSchedule */
-    private $movieSchedule;
+    public $movieSchedule;
 
     /** @var UserType */
     private $userType;

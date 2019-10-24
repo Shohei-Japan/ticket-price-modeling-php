@@ -6,16 +6,16 @@ namespace CinemaTicketPricing;
 class MovieSchedule
 {
     /** @var string */
-    private $date;
+    public $dateTime;
 
-    /** @var string */
-    private $time;
-
+    /**
+     * MovieSchedule constructor.
+     * @param string $date
+     * @param string $time
+     * @throws \Exception
+     */
     public function __construct(string $date, string $time)
     {
-        $this->date = $date;
-        $this->time = $time;
+        $this->dateTime = new \DateTimeImmutable($date . " " . $time);
     }
-
-
 }

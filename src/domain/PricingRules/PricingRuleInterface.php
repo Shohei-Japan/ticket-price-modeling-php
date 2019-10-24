@@ -8,7 +8,7 @@ use CinemaTicketPricing\TicketPriceDeterminants;
 
 interface PricingRuleInterface
 {
-    public function __construct(TicketPriceDeterminants $determinants);
+    public function __construct(TicketPriceDeterminants $determinants, array $prices);
 
     public function match(): bool;
 
