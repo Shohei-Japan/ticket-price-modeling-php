@@ -6,9 +6,9 @@ use CinemaTicketPricing\TicketPrice;
 use CinemaTicketPricing\TicketPriceDeterminants;
 use CinemaTicketPricing\PriceFinder;
 
-class AbstractPricingRule implements PricingRuleInterface
+abstract class AbstractPricingRule implements PricingRuleInterface
 {
-    private $determinants;
+    protected $determinants;
 
     private $prices;
 

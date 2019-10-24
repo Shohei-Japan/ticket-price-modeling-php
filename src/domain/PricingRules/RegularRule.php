@@ -2,11 +2,9 @@
 
 namespace CinemaTicketPricing\PricingRules;
 
-use CinemaTicketPricing\TicketPrice;
 use CinemaTicketPricing\TicketPriceDeterminants;
-use CinemaTicketPricing\PriceFinder;
 
-class RegularRule extends AbstractPricingRule implements PricingRuleInterface
+class RegularRule extends AbstractPricingRule
 {
     public function __construct(TicketPriceDeterminants $determinants, array $prices)
     {

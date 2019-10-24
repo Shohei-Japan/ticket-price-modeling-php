@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace CinemaTicketPricing\PricingRules;
 
-use CinemaTicketPricing\TicketPrice;
 use CinemaTicketPricing\TicketPriceDeterminants;
 
-class GeneralMemberRule extends AbstractPricingRule implements PricingRuleInterface
+class GeneralMemberRule extends AbstractPricingRule
 {
     public function __construct(TicketPriceDeterminants $determinants, array $prices)
     {
