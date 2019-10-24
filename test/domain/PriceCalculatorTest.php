@@ -17,9 +17,16 @@ class PriceCalculatorTest extends TestCase
      * @dataProvider dataInvoke
      * @throws \Exception
      */
-    public function testInvoke(int $expected)
-    {
-        $determinants = new TicketPriceDeterminants(new MovieSchedule('2019-10-10', '17:00'), UserType::MEMBER());
+    public function testInvoke(
+        UserType $userType,
+        string $date,
+        string $time,
+        int $expected
+    ) {
+        $determinants = new TicketPriceDeterminants(
+            new MovieSchedule($date, $time),
+            $userType
+        );
         $calculator   = new PriceCalculator();
         $actual       = $calculator->invoke($determinants);
 
@@ -30,9 +37,27 @@ class PriceCalculatorTest extends TestCase
     {
         return [
             '会員,平日'      => [
+                'userType' => UserType::MEMBER(),
+                'date' => '2019-10-10',
+                'time' => '17:00',
                 'expected' => 1000,
             ],
             '会員,平日（レイト）' => [
+                'userType' => UserType::MEMBER(),
+                'date' => '2019-10-10',
+                'time' => '21:00',
+                'expected' => 1000,
+            ],
+            '非会員,平日'      => [
+                'userType' => UserType::STUDENT1(),
+                'date' => '2019-10-10',
+                'time' => '17:00',
+                'expected' => 1000,
+            ],
+            '非会員,平日（レイト）' => [
+                'userType' => UserType::STUDENT1(),
+                'date' => '2019-10-10',
+                'time' => '21:00',
                 'expected' => 1000,
             ],
         ];
