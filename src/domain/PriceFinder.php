@@ -27,13 +27,12 @@ class PriceFinder
     public function find(array $prices): int
     {
         foreach ($prices as $key => $price) {
-            $type = new ScheduleType($key);
-            if (!$type) {
+            if (ScheduleType::isValidKey($key)) {
                 throw new \InvalidArgumentException('not a ScheduleType key');
             }
         }
         $schedule = $this->determinants->movieSchedule;
-        $scheduleType = ScheduleType::getScheduleType($schedule);
+        $scheduleType = ScheduleType::createScheduleType($schedule);
 
         return (int)$prices[$scheduleType->getValue()];
     }

@@ -15,17 +15,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PriceFinderTest extends TestCase
 {
-
-    public function prices()
-    {
-        return [
-            ScheduleType::MOVIE_DAY()->getValue()    => '1000',
-            ScheduleType::WEEKDAY()->getValue()      => '1100',
-            ScheduleType::WEEKDAY_LATE()->getValue() => '1300',
-            ScheduleType::WEEKEND()->getValue()      => '1500',
-            ScheduleType::WEEKEND_LATE()->getValue() => '1800',
-        ];
-    }
     /**
      * @param String $date
      * @param String $time
@@ -43,7 +32,7 @@ class PriceFinderTest extends TestCase
         $finder = new PriceFinder($determinants);
         $actual = $finder->find($this->prices());
 
-        $this->assertEquals($actual, $expected);
+        $this->assertSame($actual, $expected);
     }
 
     /**
@@ -97,7 +86,7 @@ class PriceFinderTest extends TestCase
         $finder = new PriceFinder($determinants);
         $actual = $finder->find($this->prices());
 
-        $this->assertNotEquals($actual, $expected);
+        $this->assertNotSame($actual, $expected);
     }
 
     /**
@@ -131,6 +120,20 @@ class PriceFinderTest extends TestCase
                 'time' => '22:00',
                 'expected' => 3000
             ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private function prices()
+    {
+        return [
+            ScheduleType::MOVIE_DAY()->getValue()    => '1000',
+            ScheduleType::WEEKDAY()->getValue()      => '1100',
+            ScheduleType::WEEKDAY_LATE()->getValue() => '1300',
+            ScheduleType::WEEKEND()->getValue()      => '1500',
+            ScheduleType::WEEKEND_LATE()->getValue() => '1800',
         ];
     }
 }

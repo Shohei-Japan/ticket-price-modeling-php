@@ -24,7 +24,7 @@ class ScheduleType extends Enum
     public const WEEKEND_LATE = '土日/レイトショー';
     public const MOVIE_DAY    = '映画の日';
 
-    public static function getScheduleType(MovieSchedule $schedule): ScheduleType
+    public static function createScheduleType(MovieSchedule $schedule): ScheduleType
     {
         $date     = $schedule->dateTime->format('d');
 
