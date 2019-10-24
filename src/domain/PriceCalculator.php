@@ -24,18 +24,18 @@ class PriceCalculator
 
         $prices = [
             GeneralMemberRule::class => [
-                ScheduleType::MOVIE_DAY    => '1000',
-                ScheduleType::WEEKDAY      => '1000',
-                ScheduleType::WEEKDAY_LATE => '1000',
-                ScheduleType::WEEKEND      => '1000',
-                ScheduleType::WEEKEND_LATE => '1000',
+                ScheduleType::MOVIE_DAY()->getKey()    => '1000',
+                ScheduleType::WEEKDAY()->getKey()      => '1000',
+                ScheduleType::WEEKDAY_LATE()->getKey() => '1000',
+                ScheduleType::WEEKEND()->getKey()      => '1000',
+                ScheduleType::WEEKEND_LATE()->getKey() => '1000',
             ],
             RegularRule::class => [
-                ScheduleType::MOVIE_DAY    => '1800',
-                ScheduleType::WEEKDAY      => '1300',
-                ScheduleType::WEEKDAY_LATE => '1800',
-                ScheduleType::WEEKEND      => '1300',
-                ScheduleType::WEEKEND_LATE => '1100',
+                ScheduleType::MOVIE_DAY()->getKey()    => '1800',
+                ScheduleType::WEEKDAY()->getKey()      => '1300',
+                ScheduleType::WEEKDAY_LATE()->getKey() => '1800',
+                ScheduleType::WEEKEND()->getKey()      => '1300',
+                ScheduleType::WEEKEND_LATE()->getKey() => '1100',
             ],
         ];
 
