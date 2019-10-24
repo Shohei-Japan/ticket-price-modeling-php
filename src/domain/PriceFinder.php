@@ -2,7 +2,7 @@
 
 namespace CinemaTicketPricing;
 
-use CinemaTicketPricing\Enums\ScheduleDateTimeType;
+use CinemaTicketPricing\Enums\ScheduleType;
 
 /**
  * Class PriceFinder
@@ -24,34 +24,17 @@ class PriceFinder
         $this->determinants = $determinants;
     }
 
-    public function find(): ScheduleDateTimeType
+    public function find(array $prices): int
     {
-        $schedule = $this->determinants->movieSchedule->dateTime;
-        $date     = $schedule->format('d');
-
-        if ($date === '01') {
-            // 映画の日
-            return ScheduleDateTimeType::FIRST_DAY();
-        }
-
-        $day  = $schedule->format('w');
-        $hour = $schedule->format('H');
-
-        $isWeekend = $day === '0' || $day === '6';
-        $isLate = $hour >= 20;
-
-        if (!$isWeekend) {
-            if (!$isLate) {
-                return ScheduleDateTimeType::WEEKDAY();
-            } else {
-                return ScheduleDateTimeType::WEEKDAY_LATE();
-            }
-        } else {
-            if (!$isLate) {
-                return ScheduleDateTimeType::WEEKEND();
-            } else {
-                return ScheduleDateTimeType::WEEKEND_LATE();
+        foreach ($prices as $key => $price) {
+            $type = new ScheduleType($key);
+            if (!$type) {
+                throw new \InvalidArgumentException('not a ScheduleType key');
             }
         }
+        $schedule = $this->determinants->movieSchedule;
+        $scheduleType = ScheduleType::getScheduleType($schedule);
+
+        return (int)$prices[$scheduleType->getValue()];
     }
 }

@@ -10,9 +10,12 @@ class GeneralMemberRule implements PricingRuleInterface
 {
     private $determinants;
 
-    public function __construct(TicketPriceDeterminants $determinants)
+    private $prices;
+
+    public function __construct(TicketPriceDeterminants $determinants, array $prices)
     {
         $this->determinants = $determinants;
+        $this->prices       = $prices;
     }
 
     public function match(): bool
