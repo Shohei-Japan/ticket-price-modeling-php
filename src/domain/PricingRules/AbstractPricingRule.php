@@ -18,10 +18,7 @@ abstract class AbstractPricingRule implements PricingRuleInterface
         $this->prices       = $prices;
     }
 
-    public function match(): bool
-    {
-        return true;
-    }
+    abstract public function match(): bool;
 
     public function value(): TicketPrice
     {
